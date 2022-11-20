@@ -21,7 +21,7 @@ export function Input(p: { onInput: (s: string) => void }) {
                    placeholder="Walk the dog... "
                    value={desc}
                    onChange={e => onChange(e.target.value)}/>
-            <button className="bg-white px-4 drop-shadow hover:text-green-400"
+            <button className="px-4 drop-shadow hover:text-green-400"
                     onSubmit={() => onSubmit}>
                 <FaPlus/>
             </button>

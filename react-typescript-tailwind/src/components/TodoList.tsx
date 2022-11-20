@@ -14,7 +14,8 @@ export function TodoList(props: {
     }
 
     function createRow(t: Todo) {
-        return <div key={t.id} className="flex flex-row justify-between gap-4 p-1">
+        return <div key={t.id}
+                    className="flex flex-row justify-between gap-4 py-1">
             <button onClick={() => props.toggleComplete(t.id)}>
                 {getToggleIcon(true)}
             </button>
@@ -28,8 +29,8 @@ export function TodoList(props: {
     }
 
     return (
-        <div className="w-full">
-            <h2 className="text-2xl text-center mb-4 underline">{props.completed ? "Completed" : "Things to do"}</h2>
+        <div className="mt-4 w-full bg-amber-300 p-4 drop-shadow-lg bg-paper-pattern">
+            <h2 className="mb-4 text-center text-2xl underline">{props.completed ? "Completed" : "Things to do"}</h2>
             {props.todos.filter(t => t.completed === props.completed).map(t => createRow(t))}
         </div>
     );
