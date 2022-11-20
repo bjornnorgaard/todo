@@ -14,12 +14,12 @@ export function TodoList(props: {
     }
 
     function createRow(t: Todo) {
-        return <div className="flex flex-row justify-between gap-4 p-1">
+        return <div key={t.id} className="flex flex-row justify-between gap-4 p-1">
             <button onClick={() => props.toggleComplete(t.id)}>
                 {getToggleIcon(true)}
             </button>
 
-            <div>{t.desc}</div>
+            <div className={t.completed ? "line-through text-left w-full" : "text-left w-full"}>{t.desc}</div>
 
             <button onClick={() => props.deleteTodo(t.id)}>
                 <FaTimes className="h-auto hover:text-red-400"/>
@@ -28,8 +28,8 @@ export function TodoList(props: {
     }
 
     return (
-        <div className="bg-white p-4 drop-shadow">
-            <h2 className="text-2xl">{props.completed ? "Completed" : "Things to do"}</h2>
+        <div className="w-full">
+            <h2 className="text-2xl text-center mb-4 underline">{props.completed ? "Completed" : "Things to do"}</h2>
             {props.todos.filter(t => t.completed === props.completed).map(t => createRow(t))}
         </div>
     );

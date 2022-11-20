@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import './App.css';
 import { Header } from "./components/Header";
 import { Input } from "./components/Input";
-import { Todo } from "./types/Todo";
 import { TodoList } from "./components/TodoList";
+import { Todo } from "./types/Todo";
 
 function App() {
-    const [todos, setTodos] = useState<Todo[]>([]);
+    const [todos, setTodos] = useState<Todo[]>([
+        {id: "1", desc:"Walk the dog", completed: false},
+        {id: "2", desc:"Do the dishes", completed: false},
+        {id: "3", desc:"Code a project", completed: true},
+        {id: "4", desc:"Cleanup living room", completed: false},
+        {id: "5", desc:"Move the furniture", completed: true},
+        {id: "6", desc:"Something fun", completed: false},
+    ]);
 
     function addTodo(desc: string) {
         const uuid = require("uuid");
@@ -27,21 +34,19 @@ function App() {
     }
 
     return (
-        <div className="h-screen bg-amber-200 pt-8">
-            <div className="flex flex-col items-center gap-4">
-                <Header></Header>
-                <Input onInput={addTodo}></Input>
+        <div className="flex max-w-xs m-auto mt-8 flex-col items-center gap-4">
+            <Header></Header>
+            <Input onInput={addTodo}></Input>
 
-                <TodoList todos={todos}
-                          deleteTodo={deleteTodo}
-                          toggleComplete={toggleComplete}
-                          completed={false}></TodoList>
+            <TodoList todos={todos}
+                      deleteTodo={deleteTodo}
+                      toggleComplete={toggleComplete}
+                      completed={false}></TodoList>
 
-                <TodoList todos={todos}
-                          deleteTodo={deleteTodo}
-                          toggleComplete={toggleComplete}
-                          completed={true}></TodoList>
-            </div>
+            <TodoList todos={todos}
+                      deleteTodo={deleteTodo}
+                      toggleComplete={toggleComplete}
+                      completed={true}></TodoList>
         </div>
     );
 }

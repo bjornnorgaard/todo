@@ -15,7 +15,7 @@ export function Input(p: { onInput: (s: string) => void }) {
     }
 
     return (
-        <form className="flex gap-2" onSubmit={onSubmit}>
+        <form className="flex gap-2 w-full" onSubmit={onSubmit}>
             <input className="w-full p-2 drop-shadow"
                    type="text"
                    placeholder="Walk the dog... "
