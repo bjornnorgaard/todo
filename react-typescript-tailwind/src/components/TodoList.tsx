@@ -3,7 +3,6 @@ import { FaCheck, FaRegCircle, FaTimes } from "react-icons/fa";
 import { Todo } from "../types/Todo";
 
 export function TodoList(props: {
-    completed: boolean,
     todos: Todo[],
     deleteTodo: (id: string) => void,
     toggleComplete: (id: string) => void,
@@ -30,8 +29,8 @@ export function TodoList(props: {
 
     return (
         <div className="mt-4 w-full bg-amber-300 p-4 drop-shadow-lg bg-paper-pattern">
-            <h2 className="mb-4 text-center text-2xl underline">{props.completed ? "Completed" : "Things to do"}</h2>
-            {props.todos.filter(t => t.completed === props.completed).map(t => createRow(t))}
+            <h2 className="mb-4 text-center text-2xl underline">Things to do</h2>
+            {props.todos.map(t => createRow(t))}
         </div>
     );
 }

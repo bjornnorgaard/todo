@@ -7,12 +7,12 @@ import { Todo } from "./types/Todo";
 
 function App() {
     const [todos, setTodos] = useState<Todo[]>([
-        {id: "1", desc:"Walk the dog", completed: false},
-        {id: "2", desc:"Do the dishes", completed: false},
-        {id: "3", desc:"Code a project", completed: true},
-        {id: "4", desc:"Cleanup living room", completed: false},
-        {id: "5", desc:"Move the furniture", completed: true},
-        {id: "6", desc:"Something fun", completed: false},
+        {id: "1", desc: "Walk the dog", completed: false},
+        {id: "2", desc: "Do the dishes", completed: false},
+        {id: "3", desc: "Code a project", completed: true},
+        {id: "4", desc: "Cleanup living room", completed: false},
+        {id: "5", desc: "Move the furniture", completed: true},
+        {id: "6", desc: "Something fun", completed: false},
     ]);
 
     function addTodo(desc: string) {
@@ -40,13 +40,7 @@ function App() {
 
             <TodoList todos={todos}
                       deleteTodo={deleteTodo}
-                      toggleComplete={toggleComplete}
-                      completed={false}></TodoList>
-
-            <TodoList todos={todos}
-                      deleteTodo={deleteTodo}
-                      toggleComplete={toggleComplete}
-                      completed={true}></TodoList>
+                      toggleComplete={toggleComplete}></TodoList>
         </div>
     );
 }
