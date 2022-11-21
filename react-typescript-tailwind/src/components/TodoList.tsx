@@ -1,5 +1,6 @@
 import React from "react";
-import { FaCheck, FaRegCircle, FaTimes } from "react-icons/fa";
+import { FaCheck, FaLink, FaRegCircle, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { todoQuery } from "../state/todo/todo.query";
 import { todoService } from "../state/todo/todo.service";
 
@@ -18,10 +19,16 @@ export const TodoList = () => {
                             : <FaRegCircle className="h-auto hover:text-blue-400"/>}
                     </button>
 
-                    <div className={t.completed ? "line-through text-left w-full text-2xl font-hand" : "text-2xl font-hand text-left w-full"}>
+                    <div
+                        className={t.completed ? "line-through text-left w-full text-2xl font-hand" : "text-2xl font-hand text-left w-full"}>
                         {t.description}
                     </div>
 
+                    <button>
+                        <Link to={"/todo/" + t.id}>
+                            <FaLink className="h-auto hover:text-blue-400"></FaLink>
+                        </Link>
+                    </button>
                     <button onClick={() => todoService.deleteTodo(t.id)}>
                         <FaTimes className="h-auto hover:text-red-400"/>
                     </button>
