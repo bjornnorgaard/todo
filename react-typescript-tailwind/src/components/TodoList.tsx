@@ -3,7 +3,7 @@ import { FaCheck, FaRegCircle, FaTimes } from "react-icons/fa";
 import { todoQuery } from "../state/todo/todo.query";
 import { todoService } from "../state/todo/todo.service";
 
-export function TodoList() {
+export const TodoList = () => {
     const todos = todoQuery.todos();
 
     return (
@@ -29,4 +29,4 @@ export function TodoList() {
             )}
         </div>
     );
-}
+};

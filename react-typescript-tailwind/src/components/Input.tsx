@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { todoService } from "../state/todo/todo.service";
 
-export function Input() {
+export const Input = () => {
     const [desc, setDesc] = useState("");
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,4 +24,4 @@ export function Input() {
             </button>
         </form>
     );
-}
+};
