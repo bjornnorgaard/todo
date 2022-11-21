@@ -22,7 +22,7 @@ export const TodoDetails = () => {
                 <p>{todo.completed ? "Sure thing!" : "Nope"}</p>
             </div>
 
-            <button className="mt-4 bg-amber-200 py-2 text-xl font-bold drop-shadow"
+            <button className="mt-4 bg-white py-2 text-xl font-bold drop-shadow"
                     onClick={() => navigate(-1)}>
                 Go Back
             </button>

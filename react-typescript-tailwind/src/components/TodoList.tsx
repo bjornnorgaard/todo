@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCheck, FaLink, FaRegCircle, FaTimes } from "react-icons/fa";
+import { FaCheck, FaChevronRight, FaRegCircle, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { todoQuery } from "../state/todo/todo.query";
 import { todoService } from "../state/todo/todo.service";
@@ -9,7 +9,7 @@ export const TodoList = () => {
 
     return (
         <div className="mt-4 w-full bg-amber-300 p-4 drop-shadow-lg bg-paper-pattern">
-            <h2 className="mb-4 text-center text-2xl underline font-hand text-4xl">Things to do</h2>
+            <h2 className="mb-4 text-center text-2xl text-4xl underline font-hand">Things to do</h2>
             {todos.map(t =>
                 <div key={t.id}
                      className="flex flex-row justify-between gap-4 py-1">
@@ -26,7 +26,7 @@ export const TodoList = () => {
 
                     <button>
                         <Link to={"/todo/" + t.id}>
-                            <FaLink className="h-auto hover:text-blue-400"></FaLink>
+                            <FaChevronRight className="h-auto hover:text-blue-400"></FaChevronRight>
                         </Link>
                     </button>
                     <button onClick={() => todoService.deleteTodo(t.id)}>

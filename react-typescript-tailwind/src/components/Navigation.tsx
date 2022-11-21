@@ -9,7 +9,7 @@ export const Navigation = () => {
 
     return (
         <nav className="mb-10 w-full bg-red-200 p-2 drop-shadow">
-            <ul className="flex gap-16 justify-center px-8 text-3xl font-bold">
+            <ul className="flex gap-24 justify-center px-8 text-3xl font-bold">
                 {routes.map(r => (
                     <li className="drop-shadow hover:text-blue-400 hover:underline">
                         <Link
