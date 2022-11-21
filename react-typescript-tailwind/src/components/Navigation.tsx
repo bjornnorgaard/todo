@@ -8,7 +8,7 @@ export const Navigation = () => {
     ];
 
     return (
-        <nav className="mb-16 w-full bg-red-200 p-2 drop-shadow">
+        <nav className="mb-10 w-full bg-red-200 p-2 drop-shadow">
             <ul className="flex justify-between px-8 text-3xl font-bold">
                 {routes.map(r => (
                     <li className="drop-shadow hover:text-blue-400 hover:underline">
