@@ -1,37 +1,40 @@
-import { Todos, todoStore } from "./todo.store";
+import { Todo, todoStore } from "./todo.store";
 
 export class todoService {
+    private static readonly api = "http://localhost:8080/todos";
+    private static readonly headers = {"Content-Type": "application/json"};
+
+    static init = () => {
+        fetch(this.api)
+            .then(res => res.json())
+            .then((todos: Todo[]) => todos.forEach(todo => todoService.trackTodo(todo)));
+    };
+
+    static trackTodo(todo: Todo) {
+        if (todoStore.filter(t => t.id === todo.id).length === 0) todoStore.push(todo);
+    }
 
     static addTodo = (desc: string) => {
-        if (desc === "oij") {
-            todoService.addTestData();
-            return;
-        }
-
-        const uuid = require("uuid");
-        const id = uuid.v4();
-        todoStore.push({id: id, description: desc, completed: false,})
+        const requestBody = {description: desc, completed: false};
+        fetch(this.api, {body: JSON.stringify(requestBody), method: "POST", headers: this.headers})
+            .then(res => res.json())
+            .then((todo: Todo) => todoStore.push(todo));
     };
 
-    static toggleComplete = (id: string) => {
+    static toggleComplete = (id: number) => {
         const index = todoStore.findIndex(t => t.id === id);
-        todoStore[index].completed = !todoStore[index].completed;
+        if (index === -1) return;
+        let todo = todoStore[index];
+        todo.completed = !todo.completed;
+        todoStore[index] = todo;
+
+        const body = JSON.stringify(todo);
+        fetch(`${this.api}/${todo.id}`, {body: body, method: "PUT", headers: this.headers}).then();
     };
 
-    static deleteTodo = (id: string) => {
+    static deleteTodo = (id: number) => {
         todoStore.splice(todoStore.findIndex(t => t.id === id), 1);
+        fetch(`${this.api}/${id}`, {method: "DELETE"}).then()
     };
-
-    private static addTestData() {
-        const initialState: Todos[] = [
-            {id: "1", description: "Walk the dog", completed: false},
-            {id: "2", description: "Do the dishes", completed: false},
-            {id: "3", description: "Code a project", completed: true},
-            {id: "4", description: "Cleanup living room", completed: false},
-            {id: "5", description: "Move the furniture", completed: true},
-            {id: "6", description: "Something fun", completed: false},
-        ];
-        initialState.forEach(t => todoStore.push(t));
-    }
 }
 

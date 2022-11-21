@@ -1,9 +1,9 @@
 import { proxy } from "valtio";
 
-export interface Todos {
-    id: string;
+export interface Todo {
+    id: number;
     completed: boolean;
     description: string;
 }
 
-export const todoStore = proxy<Todos[]>([]);
+export const todoStore = proxy<Todo[]>([]);

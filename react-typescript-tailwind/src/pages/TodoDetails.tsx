@@ -7,7 +7,7 @@ export const TodoDetails = () => {
     const navigate = useNavigate();
     const {id} = useParams();
     if (!id) return (<p>Fuck. Todo ID was invalid!</p>);
-    const todo = todoQuery.todo(id);
+    const todo = todoQuery.todo(parseInt(id));
 
     return (
         <div className="flex w-full flex-col gap-4 text-center">
