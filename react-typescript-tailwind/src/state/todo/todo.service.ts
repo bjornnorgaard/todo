@@ -3,8 +3,7 @@ import { Todo, todoStore } from "./todo.store";
 export class todoService {
     private static readonly api = "http://localhost:8080/todos";
     private static readonly headers = {"Content-Type": "application/json"};
-    private static readonly errorMessage = "" +
-        "❌ This is likely because the json-server is not started. Try 'npm run server' ✅\n\n";
+    private static readonly errorMessage = "\n❌ This is likely because the json-server is not started.\n\n✅ Try 'npm run server'\n\n";
 
     static init = () => {
         fetch(this.api)
