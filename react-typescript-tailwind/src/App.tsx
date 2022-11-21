@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Header } from "./components/Header";
 import { Input } from "./components/Input";
 import { TodoList } from "./components/TodoList";
+import { Header } from "./components/Header";
 import { Todo } from "./types/Todo";
 
 function App() {
@@ -35,7 +35,8 @@ function App() {
 
     return (
         <div className="flex max-w-xs m-auto mt-8 flex-col items-center gap-4">
-            <Header></Header>
+            <Header/>
+
             <Input onInput={addTodo}></Input>
 
             <TodoList todos={todos}
