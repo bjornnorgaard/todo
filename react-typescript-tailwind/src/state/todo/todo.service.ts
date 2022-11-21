@@ -7,7 +7,8 @@ export class todoService {
     static init = () => {
         fetch(this.api)
             .then(res => res.json())
-            .then((todos: Todo[]) => todos.forEach(todo => todoService.trackTodo(todo)));
+            .then((todos: Todo[]) => todos.forEach(todo => todoService.trackTodo(todo)))
+            .catch(() => console.log("This is likely because the json-server is not started. Try 'npm run server'."));
     };
 
     static trackTodo(todo: Todo) {
