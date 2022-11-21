@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
+import { todoService } from "../state/todo/todo.service";
 
-export function Input(p: { onInput: (s: string) => void }) {
+export function Input() {
     const [desc, setDesc] = useState("");
 
-    function onChange(value: string) {
-        setDesc(value);
-    }
-
-    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        p.onInput(desc);
         setDesc("");
-    }
+        todoService.addTodo(desc)
+    };
 
     return (
         <form className="flex gap-2 w-full" onSubmit={onSubmit}>
@@ -20,7 +17,7 @@ export function Input(p: { onInput: (s: string) => void }) {
                    type="text"
                    placeholder="Walk the dog... "
                    value={desc}
-                   onChange={e => onChange(e.target.value)}/>
+                   onChange={e => setDesc(e.target.value)}/>
             <button className="px-4 drop-shadow hover:text-green-400"
                     onSubmit={() => onSubmit}>
                 <FaPlus/>

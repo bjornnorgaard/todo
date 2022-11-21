@@ -1,2 +1,2 @@
 # todo
-Todo apps built with various frameworks for testing.
+Todos apps built with various frameworks for testing.
