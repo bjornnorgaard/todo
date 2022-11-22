@@ -7,6 +7,7 @@ export const Input = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!desc) return;
         setDesc("");
         todoService.addTodo(desc)
     };
