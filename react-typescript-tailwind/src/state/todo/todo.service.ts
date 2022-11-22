@@ -3,13 +3,13 @@ import { Todo, todoStore } from "./todo.store";
 export class todoService {
     private static readonly api = "http://localhost:8080/todos";
     private static readonly headers = {"Content-Type": "application/json"};
-    private static readonly errorMessage = "\n❌ This is likely because the json-server is not started.\n\n✅ Try 'npm run server'\n\n";
-
     static init = () => {
         fetch(this.api)
             .then(res => res.json())
             .then((todos: Todo[]) => todos.forEach(todo => todoService.trackTodo(todo)))
-            .catch(() => console.log(this.errorMessage));
+            .catch(() => console.log("\n" +
+                "❌ This is likely because the json-server is not started.\n\n" +
+                "✅ Try 'npm run server'\n\n"));
     };
 
     static trackTodo(todo: Todo) {
