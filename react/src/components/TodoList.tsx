@@ -8,7 +8,7 @@ export const TodoList = () => {
     const todos = todoQuery.todos();
 
     return (
-        <div className="mt-4 w-full bg-amber-300 p-4 drop-shadow-lg bg-paper-pattern">
+        <div className="mt-4 p-4 drop-shadow-lg bg-paper-pattern">
             <h2 className="mb-4 text-center text-2xl text-4xl underline font-hand">Things to do</h2>
             {todos.map(t =>
                 <div key={t.id}
