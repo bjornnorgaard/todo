@@ -2,4 +2,6 @@
     import "../app.css";
 </script>
 
-<slot/>
+<main class="grid h-screen place-content-center bg-green-200">
+    <slot/>
+</main>
