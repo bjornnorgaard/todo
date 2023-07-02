@@ -39,22 +39,23 @@
         </form>
 
         <h2 class="text-xl font-bold tracking-wide text-red-400">Todos</h2>
-        <div class="flex flex-col gap-4">
-            {#if !$todos.length}
-                <p in:fade>Add some todos to get started...</p>
-            {:else}
+        {#if !$todos.length}
+            <p in:fade>Add some todos to get started...</p>
+        {:else}
+            <div class="flex flex-col gap-2">
                 {#each $todos as todo (todo.id)}
-                    <div class="flex items-center justify-between rounded border border-red-200"
+                    <div class="flex items-center justify-between rounded border border-red-200 bg-white"
                          animate:flip out:fly in:fly>
                         <div class="flex gap-2 pl-2">
                             <input type="checkbox" bind:checked={todo.completed}>
                             <span class:line-through={todo.completed}>{todo.title}</span>
                         </div>
-                        <button class="px-2 py-1 hover:bg-red-300" on:click={() => remove(todo)}>Delete</button>
+                        <button class="px-2 py-1 text-red-300 hover:bg-red-300 hover:text-black"
+                                on:click={() => remove(todo)}>Delete
+                        </button>
                     </div>
                 {/each}
-            {/if}
-        </div>
-
+            </div>
+        {/if}
     </div>
 </div>
