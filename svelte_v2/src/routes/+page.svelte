@@ -4,9 +4,12 @@
     import {flip} from "svelte/animate";
     import {fly} from "svelte/transition";
     import {fade} from "svelte/transition";
+    import TodoListItem from "./TodoListItem.svelte";
 
     let inputValue: string = "";
 
+    // Listens to changes in the store and sorts the list by completed status.
+    // This is only used to trigger the animation.
     todos.subscribe(list => list.sort((a, b) => {
         if (a.completed && !b.completed) return 1;
         if (!a.completed && b.completed) return -1;
@@ -25,9 +28,8 @@
     }
 </script>
 
-<div class="flex h-screen w-screen flex-col items-center bg-green-100 p-4">
+<div class="flex flex-col items-center">
     <div class="flex w-full max-w-xs flex-col gap-4">
-
         <h1 class="text-center text-3xl font-bold tracking-wider text-red-400">Svelte Todo App</h1>
         <form class="flex w-full flex-col justify-between" on:submit|preventDefault={() => submit()}>
             <label for="todo" class="text-sm">Add something to your todos</label>
@@ -38,21 +40,16 @@
             </div>
         </form>
 
+        <a href="/other" class="text-center hover:underline">This is a routing example, click me.</a>
+
         <h2 class="text-xl font-bold tracking-wide text-red-400">Todos</h2>
         {#if !$todos.length}
             <p in:fade>Add some todos to get started...</p>
         {:else}
             <div class="flex flex-col gap-2">
                 {#each $todos as todo (todo.id)}
-                    <div class="flex items-center justify-between rounded border border-red-200 bg-white"
-                         animate:flip out:fly in:fly>
-                        <div class="flex gap-2 pl-2">
-                            <input type="checkbox" bind:checked={todo.completed}>
-                            <span class:line-through={todo.completed}>{todo.title}</span>
-                        </div>
-                        <button class="px-2 py-1 text-red-300 hover:bg-red-300 hover:text-black"
-                                on:click={() => remove(todo)}>Delete
-                        </button>
+                    <div animate:flip out:fly in:fly>
+                        <TodoListItem bind:todo={todo} on:remove={() => remove(todo)}></TodoListItem>
                     </div>
                 {/each}
             </div>
