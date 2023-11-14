@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <script src="https://unpkg.com/htmx.org@1.9.8"></script>
+    <link rel="icon" href="https://fav.farm/✅"/>
+    <title>Todos</title>
+</head>
+<body class="container">
+<main>
+    <hgroup>
+        <h1>Todos</h1>
+        <h2>What needs to be done?</h2>
+    </hgroup>
+    <form hx-post="/add-todo">
+        <label for="new-todo-title">
+            What needs doing?
+            <input id="new-todo-title" name="new-todo-title" type="text" placeholder="What needs to be done?">
+        </label>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="grid">
+        <article>
+            <hgroup>
+                <h2>Your todos</h2>
+                <p>Getting bored, get one of these done.</p>
+            </hgroup>
+
+            {{ range .Todos }}
+            {{ block "todo-item" . }}
+            <label for="{{ .Title }}">
+                <input type="checkbox" id="{{ .Title }}" name="{{ .Title }}">
+                {{ .Title }}
+            </label>
+            {{ end}}
+            {{ end}}
+
+            <br>
+            <button class="primary">Clear all todos</button>
+        </article>
+
+        <article>
+            <hgroup>
+                <h2>Archive</h2>
+                <p>Everything you've accomplished so far</p>
+            </hgroup>
+            <label for="dog1">
+                <input type="checkbox" id="dog1" name="terms">
+                Walk the dog
+            </label>
+            <label for="dishes1">
+                <input type="checkbox" id="dishes1" name="terms">
+                Do the dishes
+            </label>
+            <br>
+            <button class="secondary">Delete archived todos</button>
+        </article>
+    </div>
+</main>
+
+</body>
+</html>
