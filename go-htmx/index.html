@@ -11,17 +11,20 @@
 </head>
 <body class="container">
 <main>
-    <hgroup>
-        <h1>Todos</h1>
-        <h2>What needs to be done?</h2>
-    </hgroup>
-    <form hx-post="/add-todo">
-        <label for="new-todo-title">
-            What needs doing?
-            <input id="new-todo-title" name="new-todo-title" type="text" placeholder="What needs to be done?">
-        </label>
-        <button type="submit">Submit</button>
-    </form>
+
+    <article>
+        <hgroup>
+            <h1>Todos</h1>
+            <h2>What needs to be done?</h2>
+        </hgroup>
+        <form hx-post="/add-todo" hx-swap="beforeend" hx-target="#todo-list">
+            <label for="new-todo-title">
+                What needs doing?
+                <input id="new-todo-title" name="new-todo-title" type="text" placeholder="What needs to be done?">
+            </label>
+            <button type="submit">Submit</button>
+        </form>
+    </article>
 
     <div class="grid">
         <article>
@@ -30,35 +33,39 @@
                 <p>Getting bored, get one of these done.</p>
             </hgroup>
 
-            {{ range .Todos }}
-            {{ block "todo-item" . }}
-            <label for="{{ .Title }}">
-                <input type="checkbox" id="{{ .Title }}" name="{{ .Title }}">
-                {{ .Title }}
-            </label>
-            {{ end}}
-            {{ end}}
+            <ul id="todo-list">
+                {{ range .Todos }}
+                {{ block "todo-item" . }}
+                <li>
+                    <label for="{{ .Title }}">
+                        <input type="checkbox" id="{{ .ID }}" {{if .Completed}}checked{{end}} hx-post="/toggle-todo"/>
+                        {{ .Title }}
+                    </label>
+                </li>
+                {{ end}}
+                {{ end}}
+            </ul>
 
             <br>
             <button class="primary">Clear all todos</button>
         </article>
 
-        <article>
-            <hgroup>
-                <h2>Archive</h2>
-                <p>Everything you've accomplished so far</p>
-            </hgroup>
-            <label for="dog1">
-                <input type="checkbox" id="dog1" name="terms">
-                Walk the dog
-            </label>
-            <label for="dishes1">
-                <input type="checkbox" id="dishes1" name="terms">
-                Do the dishes
-            </label>
-            <br>
-            <button class="secondary">Delete archived todos</button>
-        </article>
+        <!--        <article>-->
+        <!--            <hgroup>-->
+        <!--                <h2>Archive</h2>-->
+        <!--                <p>Everything you've accomplished so far</p>-->
+        <!--            </hgroup>-->
+        <!--            <label for="dog1">-->
+        <!--                <input type="checkbox" id="dog1" name="terms">-->
+        <!--                Walk the dog-->
+        <!--            </label>-->
+        <!--            <label for="dishes1">-->
+        <!--                <input type="checkbox" id="dishes1" name="terms">-->
+        <!--                Do the dishes-->
+        <!--            </label>-->
+        <!--            <br>-->
+        <!--            <button class="secondary">Delete archived todos</button>-->
+        <!--        </article>-->
     </div>
 </main>
 
